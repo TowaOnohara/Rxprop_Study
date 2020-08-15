@@ -15,15 +15,16 @@ namespace Rxprop_Study.ViewModels
             FirstName = "yasuo",
             LastName = "okamoto",
         };
-        public ReactiveProperty<string> FirstNameTwoWay { get; }
+        public ReactiveProperty<string> FirstNameTwoWay{ get; }
         public ReactiveProperty<string> LastNameTwoWay { get; }
         public ReadOnlyReactiveProperty<string> FirstNameOneWay { get; }
         public ReadOnlyReactiveProperty<string> LastNameOneWay { get; }
         public ReactiveProperty<string> FirstNameToSource { get; }
         public ReactiveProperty<string> LastNameToSource { get; }
 
-        public CreateFromPocoWindowViewModel() 
+        public CreateFromPocoWindowViewModel()
         {
+
             // バインド方式:TwoWay 
             FirstNameTwoWay = Poco.ToReactivePropertyAsSynchronized(x => x.FirstName)
                 .AddTo(Disposables);
@@ -40,10 +41,12 @@ namespace Rxprop_Study.ViewModels
 
             // バインド方式:OneWayToSource
             FirstNameToSource = ReactiveProperty.FromObject(Poco, x => x.FirstName);
-                //.AddTo(Disposables);  // TODO:不要？
+            //.AddTo(Disposables);  // TODO:不要？
             LastNameToSource = ReactiveProperty.FromObject(Poco, x => x.LastName);
-                //.AddTo(Disposables);  // TODO:不要？
+            //.AddTo(Disposables);  // TODO:不要？
 
         }
     }
 }
+
+

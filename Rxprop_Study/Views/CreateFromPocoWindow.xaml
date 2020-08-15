@@ -5,12 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rxprop_Study.Views"
         xmlns:vm="clr-namespace:Rxprop_Study.ViewModels"
+        xmlns:interactivity="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="CreateFromPocoWindow" Height="450" Width="800">
+        xmlns:behaviors="clr-namespace:Rxprop_Study.Behaviors"
+        Title="CreateFromPocoWindow" Height="450" Width="300">
+    <interactivity:Interaction.Behaviors>
+        <behaviors:DisposeViewModelWhenClosedBehavior/>
+    </interactivity:Interaction.Behaviors>
     <Window.DataContext>
         <vm:CreateFromPocoWindowViewModel/>
     </Window.DataContext>
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <HeaderedContentControl Header="POCO Prop">
+            <StackPanel>
+                <Label Content="Firstname:"/>
+                <TextBox Text="{Binding Poco.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Content="Lastname:"/>
+                <TextBox Text="{Binding Poco.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+        </HeaderedContentControl>
+        <HeaderedContentControl Header="POCO (TwoWay)">
+            <StackPanel>
+                <Label Content="Firstname:"/>
+                <TextBox Text="{Binding FirstNameTwoWay.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Content="Lastname:"/>
+                <TextBox Text="{Binding LastNameTwoWay.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+        </HeaderedContentControl>
+        <HeaderedContentControl Header="POCO (OneWay)">
+            <StackPanel>
+                <Label Content="Firsrtname:"/>
+                <TextBlock Text="{Binding FirstNameOneWay.Value, Mode=OneWay}"/>
+                <Label Content="Lastname:"/>
+                <TextBlock Text="{Binding LastNameOneWay.Value, Mode=OneWay}"/>
+            </StackPanel>
+        </HeaderedContentControl>
+        <HeaderedContentControl Header="POCO (OneWayToSource)">
+            <StackPanel>
+                <Label Content="Firstname:"/>
+                <TextBox Text="{Binding FirstNameToSource.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Content="Lastname:"/>
+                <TextBox Text="{Binding LastNameToSource.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+        </HeaderedContentControl>
+
+    </StackPanel>
 </Window>
