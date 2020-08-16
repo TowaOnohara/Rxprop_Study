@@ -14,5 +14,6 @@
     <StackPanel>
         <Button Content="Basic Usage" Click="Button_Click" />
         <Button Content="Create from objects" Click="CreateFromObjectsButton_Click" />
+        <Button Content="Validation" Click="ValidationButton_Click" />
     </StackPanel>
 </Window>

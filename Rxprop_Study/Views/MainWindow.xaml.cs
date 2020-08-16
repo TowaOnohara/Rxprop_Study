@@ -32,5 +32,6 @@ namespace Rxprop_Study.Views
         //}
 
         private void CreateFromObjectsButton_Click(object sender, EventArgs e) => new CreateFromPocoWindow().Show();
+        private void ValidationButton_Click(object sender, RoutedEventArgs e) => new ValidationWindow().Show();
     }
 }

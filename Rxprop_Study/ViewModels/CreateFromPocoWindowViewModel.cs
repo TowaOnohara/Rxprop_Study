@@ -26,12 +26,14 @@ namespace Rxprop_Study.ViewModels
         {
 
             // バインド方式:TwoWay 
+            // TwoWay: ToReactivePropertyAsSynchronized()
             FirstNameTwoWay = Poco.ToReactivePropertyAsSynchronized(x => x.FirstName)
                 .AddTo(Disposables);
             LastNameTwoWay = Poco.ToReactivePropertyAsSynchronized(x => x.LastName)
                 .AddTo(Disposables);
 
             // バインド方式:OneWay
+            // OneWay: ObserveProperty().ToReadOnlyReactiveProperty()
             FirstNameOneWay = Poco.ObserveProperty(x => x.FirstName)
                 .ToReadOnlyReactiveProperty()
                 .AddTo(Disposables);
@@ -40,6 +42,7 @@ namespace Rxprop_Study.ViewModels
                 .AddTo(Disposables);
 
             // バインド方式:OneWayToSource
+            // OneWayToSource: ReactiveProperty.FromObject()
             FirstNameToSource = ReactiveProperty.FromObject(Poco, x => x.FirstName);
             //.AddTo(Disposables);  // TODO:不要？
             LastNameToSource = ReactiveProperty.FromObject(Poco, x => x.LastName);
