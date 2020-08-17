@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:Rxprop_Study"
              StartupUri="Views\MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="Label" x:Key="TitleLabel">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="Margin" Value="1"/>
+        </Style>
     </Application.Resources>
 </Application>

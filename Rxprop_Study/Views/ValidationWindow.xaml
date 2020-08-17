@@ -16,7 +16,26 @@
     <Window.DataContext>
         <vm:ValidationWindowViewModel/>
     </Window.DataContext>
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <Label Content="Validation:" Style="{StaticResource TitleLabel}" />
+        <Label Content="DataAnnotation"/>
+        <TextBox Text=""/>
+        <TextBlock Text="" Foreground="Red" />
+        <Label Content="Custom logic:"/>
+        <TextBox Text=""/>
+        <TextBlock Text="" Foreground="Red" />
+        <CheckBox Content="HasError" IsChecked="False" />
+        <Button Content="Submit" />
+        <TextBlock Text="" HorizontalAlignment="Center" />
+
+        <Label Content="Ignore initial validation error:" Style="{StaticResource TitleLabel}" />
+        <TextBox Text="" />
+        <Label Content="Validation with POCO:" Style="{StaticResource TitleLabel}" />
+        <TextBox Text="" />
+        <TextBlock>
+            <Run Text="Poco.FirstName:" />
+            <Run Text="" />
+        </TextBlock>
+
+    </StackPanel>
 </Window>
