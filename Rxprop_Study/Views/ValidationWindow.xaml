@@ -22,8 +22,8 @@
         <TextBox Text="{Binding WithDataAnnotations.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="{Binding WithDataAnnotationsErrMessage.Value, Mode=OneWay, UpdateSourceTrigger=Default}" Foreground="Red" />
         <Label Content="Custom logic:"/>
-        <TextBox Text=""/>
-        <TextBlock Text="" Foreground="Red" />
+        <TextBox Text="{Binding WithCustomValidationLogic.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="{Binding WithCustomValidationLogicErrMessage.Value, Mode=OneWay}" Foreground="Red" />
         <CheckBox Content="HasError" IsChecked="False" />
         <Button Content="Submit" />
         <TextBlock Text="" HorizontalAlignment="Center" />

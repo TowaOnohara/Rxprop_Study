@@ -14,9 +14,10 @@ namespace Rxprop_Study.ViewModels
         public ReactiveProperty<string> WithDataAnnotations { get; }
         public ReadOnlyReactivePropertySlim<string> WithDataAnnotationsErrMessage { get; }
 
-
         public ReactiveProperty<string> WithCustomValidationLogic { get; }
         public ReadOnlyReactivePropertySlim<string> WithCustomValidationLogicErrMessage { get; }
+
+        public ReactiveProperty<bool> HasValidationErrors { get; }
 
         //[Required(ErrorMessage = "Required property2")]  // 値が格納されている必要がある、という属性(※)
         //public ReactiveProperty<string> WithDataAnnotations2 { get; }
@@ -37,6 +38,13 @@ namespace Rxprop_Study.ViewModels
                 .AddTo(Disposables);                                // 4) まとめてDisposeできるように登録
 
 
+            WithCustomValidationLogic = new ReactiveProperty<string>()
+                .SetValidateNotifyError(x => !string.IsNullOrEmpty(x) && x.Contains("-") ? null : "Require '-'")
+                .AddTo(Disposables);
+            WithCustomValidationLogicErrMessage = WithCustomValidationLogic
+                .ObserveValidationErrorMessage()
+                .ToReadOnlyReactivePropertySlim()
+                .AddTo(Disposables);
 
 
             // TODO: ModelをSyncしているときはどのような挙動になるのか？
