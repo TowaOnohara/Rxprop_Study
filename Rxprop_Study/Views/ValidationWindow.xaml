@@ -24,8 +24,8 @@
         <Label Content="Custom logic:"/>
         <TextBox Text="{Binding WithCustomValidationLogic.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="{Binding WithCustomValidationLogicErrMessage.Value, Mode=OneWay}" Foreground="Red" />
-        <CheckBox Content="HasError" IsChecked="False" />
-        <Button Content="Submit" />
+        <CheckBox Content="HasError" IsChecked="{Binding HasValidationErrors.Value}" />
+        <Button Content="Submit" Command="{Binding SubmitCommand}"/>
         <TextBlock Text="" HorizontalAlignment="Center" />
 
         <Label Content="Ignore initial validation error:" Style="{StaticResource TitleLabel}" />
