@@ -26,6 +26,8 @@ namespace Rxprop_Study.ViewModels
 
         public ReadOnlyReactivePropertySlim<string> Message { get; }
 
+        [Required(ErrorMessage = "Required some character")]
+        public ReactiveProperty<string> IgnoreInitialValidationError { get; }
 
         //[Required(ErrorMessage = "Required property2")]  // 値が格納されている必要がある、という属性(※)
         //public ReactiveProperty<string> WithDataAnnotations2 { get; }
@@ -84,6 +86,12 @@ namespace Rxprop_Study.ViewModels
                 //.Throttle(TimeSpan.FromMilliseconds(1000))    // 1000ms間値が変化しなかったら、それまでの値を流す。
                 .Throttle(_ => SubmitCommand)                   // SubmitCommandが実行されたときに、それまでの値を流す。。。？？
                 .ToReadOnlyReactivePropertySlim();
+
+
+            // 最初のValidationエラーを無視してくれる
+            IgnoreInitialValidationError = new ReactiveProperty<string>(mode: ReactivePropertyMode.Default | ReactivePropertyMode.IgnoreInitialValidationError)
+                .SetValidateAttribute(() => IgnoreInitialValidationError)
+                .AddTo(Disposables);
 
 
             // TODO: ModelをSyncしているときはどのような挙動になるのか？

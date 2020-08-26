@@ -29,7 +29,7 @@
         <TextBlock Text="{Binding Message.Value}" HorizontalAlignment="Center" />
 
         <Label Content="Ignore initial validation error:" Style="{StaticResource TitleLabel}" />
-        <TextBox Text="" />
+        <TextBox Text="{Binding IgnoreInitialValidationError.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <Label Content="Validation with POCO:" Style="{StaticResource TitleLabel}" />
         <TextBox Text="" />
         <TextBlock>
