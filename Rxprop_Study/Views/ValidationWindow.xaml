@@ -31,10 +31,10 @@
         <Label Content="Ignore initial validation error:" Style="{StaticResource TitleLabel}" />
         <TextBox Text="{Binding IgnoreInitialValidationError.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <Label Content="Validation with POCO:" Style="{StaticResource TitleLabel}" />
-        <TextBox Text="" />
+        <TextBox Text="{Binding FirstName.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock>
             <Run Text="Poco.FirstName:" />
-            <Run Text="" />
+            <Run Text="{Binding poco.FirstName, Mode=OneWay}" />
         </TextBlock>
 
     </StackPanel>

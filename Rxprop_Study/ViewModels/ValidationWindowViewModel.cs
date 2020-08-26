@@ -29,11 +29,11 @@ namespace Rxprop_Study.ViewModels
         [Required(ErrorMessage = "Required some character")]
         public ReactiveProperty<string> IgnoreInitialValidationError { get; }
 
-        //[Required(ErrorMessage = "Required property2")]  // 値が格納されている必要がある、という属性(※)
-        //public ReactiveProperty<string> WithDataAnnotations2 { get; }
-        //public ReadOnlyReactivePropertySlim<string> WithDataAnnotationsErrMessage2 { get; }
 
         public POCO poco { get; } = new POCO { LastName = "test", FirstName = "TEST" };
+
+        [Required]
+        public ReactiveProperty<string> FirstName { get; }
 
         public ValidationWindowViewModel()
         {
@@ -94,15 +94,11 @@ namespace Rxprop_Study.ViewModels
                 .AddTo(Disposables);
 
 
-            // TODO: ModelをSyncしているときはどのような挙動になるのか？
-            //WithDataAnnotations2 = poco.ToReactivePropertyAsSynchronized(x => x.FirstName, ignoreValidationErrorValue: true)
-            //    .SetValidateAttribute(() => WithDataAnnotations2)
-            //    .AddTo(Disposables);
-            //WithDataAnnotationsErrMessage2 = WithDataAnnotations2.ObserveValidationErrorMessage()
-            //    .ToReadOnlyReactivePropertySlim()
-            //    .AddTo(Disposables);
 
-            //ignoreValidationErrorValue: エラー時にModelに値を反映させるかどうかのフラグ
+            // ModelとシンクしているプロパティのValidation            
+            FirstName = poco.ToReactivePropertyAsSynchronized(x => x.FirstName, ignoreValidationErrorValue: true)
+                .SetValidateAttribute(() => FirstName)                           // ↑ ignoreValidationErrorValue: エラー時にModelに値を反映させるかどうかのフラグ
+                .AddTo(Disposables);
         }
 
     }
