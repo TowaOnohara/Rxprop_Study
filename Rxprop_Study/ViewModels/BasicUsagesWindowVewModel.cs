@@ -11,6 +11,9 @@ namespace Rxprop_Study.ViewModels
     {
         public ReactiveProperty<string> Input { get; }  // TODO: setは不要？
         public ReadOnlyReactiveProperty<string> Output { get; }
+     
+        public ReactivePropertySlim<string> InputSlim { get; } 
+        public ReadOnlyReactivePropertySlim<string> OutputSlim { get; }
 
         public BasicUsagesWindowVewModel()
         {
@@ -18,6 +21,13 @@ namespace Rxprop_Study.ViewModels
             Output = Input.Delay(TimeSpan.FromSeconds(1))
                 .Select(x => x?.ToUpper())
                 .ToReadOnlyReactiveProperty()
+                .AddTo(Disposables);
+
+            InputSlim = new ReactivePropertySlim<string>();
+            OutputSlim = InputSlim.Delay(TimeSpan.FromSeconds(1))
+                .Select(x => x?.ToUpper())
+                .ObserveOnUIDispatcher()
+                .ToReadOnlyReactivePropertySlim()   // TODO:???必要なのか？
                 .AddTo(Disposables);
         }
     }
